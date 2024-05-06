@@ -5,6 +5,7 @@ import { SingInDTO } from './dto/sign-in.dto';
 import { AuthenticationGuard } from './guards/authentication/authentication.guard';
 import { Roles } from './decorators/roles/roles.decorator';
 import { AuthorizationGuard } from './guards/authorization/authorization.guard';
+import { Role } from 'src/global/enum/role.enum';
 
 @Controller('api/auth')
 export class AuthController {
@@ -32,7 +33,7 @@ export class AuthController {
   }
 
   @Get('onlyAdmin')
-  @Roles('admin', 'principal')
+  @Roles(Role.admin, Role.principal)
   @UseGuards(AuthenticationGuard, AuthorizationGuard)
   onlyAdmin() {
     return 'You are admin or principal.';
